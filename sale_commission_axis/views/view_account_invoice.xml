@@ -1,0 +1,47 @@
+<odoo>
+	<data>
+
+        <record model="ir.ui.view" id="inherit_account_invoice_form_view">
+            <field name="name">inherit.account.invocie.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="config_inv_commission"/>
+                    <field name="sale_commission_inv" attrs="{'invisible': [('config_inv_commission', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//notebook[last()]" position="inside">
+                    <field name="inv_commission_bool" invisible="1"/>
+                 <page string="Sales Commission" name="sale_commi" attrs="{'invisible': [('inv_commission_bool', '=', False)]}">
+                        <field name="commission_inv_line_ids">
+                            <tree string="Commission" create="false" delete="false" edit="false">
+                                <field name="date"/>
+                                <field name="user_id"/>
+                                <field name="description"/>
+                                <field name="product_id"/>
+                               	<field name="amount" sum="Total Amount"/>
+                               	<field name="invoice_id" invisible="0"/>
+                            </tree>
+                        </field>
+                 </page>
+             </xpath>
+
+<xpath expr="//notebook[last()]" position="inside">
+                    <field name="pay_commission_bool" invisible="1"/>
+                 <page string="Sales Commission" name="sale_commi_payment" attrs="{'invisible': [('inv_commission_bool', '=', True)]}">
+                        <field name="commission_inv_line_ids">
+                            <tree string="Commission" create="false" delete="false" edit="false">
+                                <field name="date"/>
+                                <field name="user_id"/>
+                                <field name="description"/>
+                                <field name="product_id"/>
+                               	<field name="amount" sum="Total Amount"/>
+                               	<field name="invoice_id" invisible="0"/>
+                            </tree>
+                        </field>
+                 </page>
+             </xpath>         </field>
+     </record>
+
+	</data>
+</odoo>

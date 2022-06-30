@@ -1,0 +1,238 @@
+<odoo>
+	<data>
+<!--        List View Of Sales Commission -->
+		<record model="ir.ui.view" id="sale_commission_tree">
+        <field name="name">sale.commission.tree</field>
+        <field name="model">sale.commission</field>
+        <field name="arch" type="xml">
+            <tree string="Commissions">
+                <field name="name" />
+                <field name="commission_type" />
+            </tree>
+        </field>
+    </record>
+
+<!--        Form View of Sales Commission-->
+    <record model="ir.ui.view" id="sale_commission_form">
+        <field name="name">Sales commissions form</field>
+        <field name="model">sale.commission</field>
+        <field name="arch" type="xml">
+            <form string="Commission">
+            	<sheet>
+                <group>
+                    <group>
+                        <field name="name" required="1" />
+                        <field name="commission_type" />
+                        <field name="user_ids" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="affiliated_commi"  attrs="{'invisible': [('commission_type', '!=', 'partner')], 'required': [('commission_type', '=', 'partner')]}"  />
+                        <field name="non_affiliated_commi" attrs="{'invisible': [('commission_type', '!=', 'partner')], 'required': [('commission_type', '=', 'partner')]}"/>
+                        <field name="standard_commi" attrs="{'invisible': [('commission_type', '!=', 'standard')], 'required': [('commission_type', '=', 'standard')]}"/>
+                        <field name="no_discount_commission" attrs="{'invisible': [('commission_type', '!=', 'discount')], 'standard': [('commission_type', '=', 'discount')]}"/>
+                        <field name="max_discount" attrs="{'invisible': [('commission_type', '!=', 'discount')], 'required': [('commission_type', '=', 'discount')]}"/>
+                        <field name="discount_commi" attrs="{'invisible': [('commission_type', '!=', 'discount')], 'required': [('commission_type', '=', 'discount')]}"/>
+                    </group>
+                </group>
+                    <label for="type_ids"  string="Sales Commission Exception" attrs="{'invisible': [('commission_type', '!=', 'product')], 'required': [('commission_type', '=', 'product')]}"/>
+                    <br/>
+                    <field name="type_ids" string="Sales Commission Exception" attrs="{'invisible': [('commission_type', '!=', 'product')], 'required': [('commission_type', '=', 'product')]}">
+                        <tree >
+                            <field name="based_on" />
+                            <field name="with_type" />
+                            <field name="product_id" />
+                            <field name="product_categ_id"/>
+                        </tree>
+                    </field>
+                     <label for="rule_ids"  string="Discount Commission Rules" attrs="{'invisible': [('commission_type', '!=', 'discount')], 'required': [('commission_type', '=', 'discount')]}"/>
+                    <br/>
+                    <field name="rule_ids" string="Discount Commission Rules " attrs="{'invisible': [('commission_type', '!=', 'discount')], 'required': [('commission_type', '=', 'discount')]}">
+                        <tree >
+                            <field name="discount" />
+                            <field name="commission" />
+                        </tree>
+                    </field>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--        Action For Sales Commission-->
+    <record model="ir.actions.act_window" id="action_commission">
+        <field name="name">Sale Commission</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.commission</field>
+
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--        Main Menu of commission-->
+    <menuitem name="Commission Management"
+              id="menu_sale_commissions_management"
+              parent="sale.sale_menu_root"
+              groups="sales_team.group_sale_manager"
+              sequence="4"
+    />
+
+<!--        Sales Commission menu-->
+    <menuitem name="Sale Commission"
+              id="menu_sale_commissions"
+              parent="menu_sale_commissions_management"
+              action="action_commission" />
+
+
+<!--List view of commission Type-->
+    	 <record model="ir.ui.view" id="sale_commission_type_tree">
+        <field name="name">sale.commission.type.tree</field>
+        <field name="model">commission.type</field>
+        <field name="arch" type="xml">
+            <tree string="Commission Type">
+                <field name="based_on" />
+                <field name="with_type" />
+                <field name="product_id" />
+                <field name="product_categ_id" />
+            </tree>
+        </field>
+    </record>
+
+<!--        form view of commission Type-->
+    <record model="ir.ui.view" id="sale_commission_type_form">
+        <field name="name">Sales commissions Type form</field>
+        <field name="model">commission.type</field>
+        <field name="arch" type="xml">
+            <form string="Commission Type">
+            	<sheet>
+                <group>
+                	<group>
+                		<field name="based_on"/>
+                		<field name="with_type"/>
+                		 <field name="product_id"  attrs="{'invisible': [('based_on', '!=', 'product')], 'required': [('based_on', '=', 'product')]}"/>
+                <field name="product_categ_id"  attrs="{'invisible': [('based_on', '!=', 'product_category')], 'required': [('based_on', '=', 'product_category')]}"/>
+                	</group>
+                	<group>
+                		<field name="target_price"  attrs="{'invisible': [('with_type', '!=', 'fix')], 'required': [('with_type', '=', 'fix')]}"/>
+                		<field name="above_price_commi"  attrs="{'invisible': [('with_type', '!=', 'fix')], 'required': [('with_type', '=', 'fix')]}"/>
+                		<field name="target_margin"  attrs="{'invisible': [('with_type', '!=', 'margin')], 'required': [('with_type', '=', 'margin')]}"/>
+                		<field name="above_margin_commi"  attrs="{'invisible': [('with_type', '!=', 'margin')], 'required': [('with_type', '=', 'margin')]}"/>
+                		<field name="below_margin_commi"  attrs="{'invisible': [('with_type', '!=', 'margin')], 'required': [('with_type', '=', 'margin')]}"/>
+                		<field name="commi_exception"  attrs="{'invisible': [('with_type', '!=', 'commission_exception')], 'required': [('with_type', '=', 'commission_exception')]}"/>
+                	</group>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--        Action of commission Types-->
+     <record model="ir.actions.act_window" id="action_commission_type">
+        <field name="name">Sale Commission Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">commission.type</field>
+
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--Menu item of commission type-->
+    <menuitem name="Sale Commission Type"
+              id="menu_sale_commissions_type"
+              parent="menu_sale_commissions_management"
+              action="action_commission_type" />
+
+<!--List view of commission Rules-->
+    	 <record model="ir.ui.view" id="sale_commission_rules_tree">
+        <field name="name">sale.commission.rules.tree</field>
+        <field name="model">commission.rules</field>
+        <field name="arch" type="xml">
+            <tree string="Commission Rules">
+                <field name="discount" />
+                <field name="commission" />
+            </tree>
+        </field>
+    </record>
+
+<!--        Form view of commission Rules-->
+    <record model="ir.ui.view" id="sale_commission_rules_form">
+        <field name="name">Sales commissions Rules form</field>
+        <field name="model">commission.rules</field>
+        <field name="arch" type="xml">
+            <form string="Commission Rules">
+            	<sheet>
+                <group>
+                	<group>
+                		<field name="discount"/>
+                		<field name="commission"/>
+                    </group>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--        Action of commission Rules-->
+     <record model="ir.actions.act_window" id="action_commission_rules">
+        <field name="name">Sale Commission Rulea</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">commission.rules</field>
+
+        <field name="view_mode">tree,form</field>
+    </record>
+
+        <!--List view of commission Lines-->
+    	 <record model="ir.ui.view" id="sale_commission_line_data_tree">
+        <field name="name">sale.commission.line.data.tree</field>
+        <field name="model">commission.line.data</field>
+        <field name="arch" type="xml">
+            <tree string="Commission Lines" create="false" delete="false" edit="false">
+                <field name="date" />
+                <field name="description" />
+                <field name="user_id" />
+                <field name="product_id" />
+                <field name="product_categ_id" />
+                <field name="order_id" />
+                <field name="invoice_id" />
+                <field name="payment_id" />
+                <field name="amount" sum="Total Amount"/>
+            </tree>
+        </field>
+    </record>
+
+<!--        Form view of commission Lines-->
+    <record model="ir.ui.view" id="sale_commission_line_data_form">
+        <field name="name">Sales commissions Line Data form</field>
+        <field name="model">commission.line.data</field>
+        <field name="arch" type="xml">
+            <form string="Commission Lines" create="false" delete="false" edit="false">
+            	<sheet>
+                <group>
+                	<group>
+                		<field name="date" />
+                <field name="description" />
+                <field name="user_id" />
+                <field name="product_id" />
+                <field name="order_id" />
+                <field name="invoice_id" />
+                <field name="payment_id" />
+                <field name="amount" />
+                    </group>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--        Action of commission Lines-->
+     <record model="ir.actions.act_window" id="action_commission_line_data">
+        <field name="name">Sale Commission Line Data</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">commission.line.data</field>
+
+        <field name="view_mode">tree</field>
+    </record>
+
+<!--        Menuitem for commision Line-->
+         <menuitem name="Commission Lines"
+              id="menu_commissions_line"
+              parent="menu_sale_commissions_management"
+              action="action_commission_line_data" />
+	</data>
+</odoo>

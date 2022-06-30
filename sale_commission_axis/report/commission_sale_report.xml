@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="paperformat_commissionsummary" model="report.paperformat">
+            <field name="name">Commission Summary</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">23</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="action_report_commission" model="ir.actions.report">
+        <field name="name">Commission Summary Report</field>
+        <field name="model">wizard.sale.commission</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sale_commission_axis.report_commissionsummary</field>
+        <field name="report_file">sale_commission_axis.report_commissionsummary</field>
+        <field name="print_report_name">'Commission Report'</field>
+        <field name="binding_model_id" ref="model_wizard_sale_commission"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+        <record id="action_report_commission" model="ir.actions.report">
+            <field name="paperformat_id" ref="sale_commission_axis.paperformat_commissionsummary"/>
+        </record>
+    </data>
+</odoo>

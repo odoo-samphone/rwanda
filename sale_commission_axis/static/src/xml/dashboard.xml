@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+    <t t-name="DashboardView">
+        <div class="sales_commission_dashboard">
+            <div class="container-fluid o_Helpdesk_dashboard">
+                <div class="sales-dashboard">
+                    <h4 class="text-primary text-center pt-5 helpdesk-top-cous">Dashboard</h4>
+                    <div class="container">
+                        <div class="appointment-cards pb-3">
+
+                            <div class="ticket-cards pt-5">
+
+                                   <div class="row">
+                                <div class="col-lg-3 col-sm-6 col-12">
+                                    <div class="appointment_cards position-relative
+                                    overflow-hidden appointment_card1 rounded p-sm-4 p-3 total_sale_commission">
+                                    <i class="fa fa-bell position-absolute opacity_icon"></i>
+                                        <div class="row align-items-center">
+                                      <div class="col-3 pr-0">
+                                        <h1 class="card_number_text m-0 text-white"><b class="total-sale-commission"></b></h1>
+                                      </div>
+                                            <div class="col-9">
+                                        <h4 class="mb-1 text-white card_up_title">Total</h4>
+                                                <h2 class="m-0 text-white card_main_title">Sales Commission</h2>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-6 col-12">
+                                  <div class="appointment_cards position-relative
+                                  overflow-hidden appointment_card2 rounded p-sm-4 p-3 total_inv_commission">
+                                    <i class="fa fa-info-circle position-absolute opacity_icon"></i>
+                                      <div class="row align-items-center">
+                                      <div class="col-3 pr-0">
+                                        <h1 class="card_number_text m-0 text-white"><b class="total-inv-commission"></b></h1>
+                                      </div>
+                                          <div class="col-9">
+                                        <h4 class="mb-1 text-white card_up_title">Total</h4>
+                                              <h2 class="m-0 text-white card_main_title">Invoice Commission</h2>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-12">
+                                  <div class="appointment_cards position-relative overflow-hidden appointment_card3
+                                   rounded p-sm-4 p-3 total_payment_commission">
+                                    <i class="fa fa-calendar position-absolute opacity_icon"></i>
+                                      <div class="row align-items-center">
+                                      <div class="col-3 pr-0">
+                                        <h1 class="card_number_text m-0 text-white"><b class="total-payment-commission"></b></h1>
+                                      </div>
+                                          <div class="col-9">
+                                        <h4 class="mb-1 text-white card_up_title">Total</h4>
+                                              <h2 class="m-0 text-white card_main_title"> Payment Commission</h2>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+
+                            <!-- End: helpdesk Cards -->
+
+                            <!-- Start: Helpdesk Charts -->
+                            <div class="row" >
+                                <div class="col-md-6">
+                                  <div class="appontment_chart_cards p-sm-3 p-2 shadow-sm text-center border rounded">
+                                    <h4 class="mb-2 text-dark">Weekly Commission</h4>
+                                      <div class="card-body shadow">
+                                      <div class="panel">
+                                          <div class="panel-heading"  style="font-weight:bold;">
+                                          </div>
+                                          <div class="panel-body" style="font-weight:bold;">
+                                                <canvas id="weekcommission" width="500px" height="400px"/>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="appontment_chart_cards p-sm-3 p-2 shadow-sm text-center border rounded">
+                                    <h4 class="mb-2 text-dark">Monthly Commission</h4>
+                                      <div class="card-body shadow">
+                                      <div class="panel">
+                                          <div class="panel-heading">
+                                          </div>
+                                          <div class="panel-body" style="font-color:#000000;">
+                                                <canvas id="monthlycommission" width="500px" height="400px"/>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <div class="appontment_chart_cards p-sm-3 p-2 shadow-sm text-center border rounded">
+                                    <h4 class="mb-2 text-dark">Sales Commission</h4>
+                                      <div class="card-body shadow">
+                                      <div class="panel">
+                                          <div class="panel-heading">
+                                          </div>
+                                          <div class="panel-body">
+                                                <canvas id="sale_commission_data" width="500px" height="400px"/>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="appontment_chart_cards p-sm-3 p-2 shadow-sm text-center border rounded">
+                                    <h4 class="mb-2 text-dark">Invoice Commission</h4>
+                                      <div class="card-body shadow">
+                                      <div class="panel">
+                                          <div class="panel-heading">
+                                          </div>
+                                          <div class="panel-body">
+                                                <canvas id="invoice_commission_data" width="500px" height="400px"/>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="appontment_chart_cards p-sm-3 p-2 shadow-sm text-center border rounded">
+                                    <h4 class="mb-2 text-dark">Payment Commission</h4>
+                                      <div class="card-body shadow">
+                                      <div class="panel">
+                                          <div class="panel-heading">
+                                          </div>
+                                          <div class="panel-body">
+                                                <canvas id="payment_commission_data" width="500px" height="400px"/>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <!-- End: Helpdesk Charts -->
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </t>
+</templates>
+
+

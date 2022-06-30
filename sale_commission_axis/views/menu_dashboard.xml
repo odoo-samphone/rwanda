@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+    <record id="dashboard_action_commission" model="ir.actions.client">
+         <field name="name">Dashboard Commission</field>
+         <field name="tag">sales_commission_dashboard</field>
+    </record>
+
+    <menuitem id="dashboard_menu" name="Dashboard Commission"
+              parent="sale_commission_axis.menu_sale_commissions_management"
+        action="sale_commission_axis.dashboard_action_commission" sequence="0" />
+
+   </data>
+</odoo>
