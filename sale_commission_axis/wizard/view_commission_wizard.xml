@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_sale_commission_wizard" model="ir.ui.view">
+            <field name="name">wizard.sale.commission.form</field>
+            <field name="model">wizard.sale.commission</field>
+            <field name="arch" type="xml">
+                <form string="Commission Report">
+                    <group>
+                         <group>
+                             <field name="start_date"/>
+                             <field name="end_date"/>
+                         </group>
+                        <group>
+                            <field name="user_ids"  required="1" widget="many2many_tags"/>
+                            <field name="commission" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string='Print PDF' name="print_pdf" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_sale_commission_report" model="ir.actions.act_window">
+            <field name="name">Commission Report</field>
+            <field name="res_model">wizard.sale.commission</field>
+
+            <field name="view_mode">tree,form</field>
+           <field name="view_id" ref="view_sale_commission_wizard"/>
+           <field name="target">new</field>
+        </record>
+
+          <menuitem name="Commission Report"
+              id="menu_commissions_report"
+              parent="menu_sale_commissions_management"
+              action="action_sale_commission_report" />
+
+    </data>
+</odoo>
