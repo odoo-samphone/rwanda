@@ -12,7 +12,7 @@ class AccountInvoice(models.Model):
         config_id = self.env["res.config.settings"].search([], limit=1, order='id desc')
         last_id = config_id and max(config_id)
         if last_id.commission_based == "commission_invoice" or last_id.commission_based == "commission_payment":
-            self.config_sale_commission = True
+            self.config_inv_commission = True
         user_ids = self.env["res.users"].search([('id', '=', self.env.user.id)])
         commission_ids = self.env["sale.commission"].search([("user_ids", "in", user_ids.id)])
         commission_lst = []
