@@ -14,11 +14,7 @@ class AccountPayment(models.TransientModel):
         last_id = config_ids and max(config_ids)
         active_ids = self._context.get('active_ids')
         invoice_id = self.env['account.move'].browse(active_ids)
-        print("invoice_id",invoice_id)
-        print("invoice_id",invoice_id.sale_commission_inv)
-
         commission_id = self.env['sale.commission'].search([("id", '=', invoice_id.sale_commission_inv.id)])
-        print("commission_id",commission_id.commission_type)
         if last_id.commission_based == "commission_payment":
             if self.id:
                 invoice_id = self.env['account.move'].browse(active_ids)
