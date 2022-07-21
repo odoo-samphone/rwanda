@@ -17,5 +17,5 @@ class ResUsers(models.Model):
         if self.ids and 'pos_config_ids' in values:
             self.env['ir.model.access'].call_cache_clearing_methods()
             self.env['ir.rule'].clear_caches()
-            self.has_group.clear_cache(self)
+            # self.has_group.clear_cache(self) -- commented out as it was raising error, that clear_cache doesn't exist
         return res
