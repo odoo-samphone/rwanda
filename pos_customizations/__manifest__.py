@@ -18,7 +18,8 @@
     'installable': True,
     'assets': {
         'point_of_sale.assets': [
-            "pos_customizations/static/src/js/PaymentScreen.js"
+            "pos_customizations/static/src/js/PaymentScreen.js",
+            "pos_customizations/static/src/js/ProductScreen.js",
         ],
 
         'web.assets_qweb': [
