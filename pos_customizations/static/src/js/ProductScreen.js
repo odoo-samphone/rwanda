@@ -9,7 +9,6 @@ patch(ProductScreen.prototype, 'pos_customizations_product_screen', {
         async _getAddProductOptions(product, base_code) {
             let price_extra = 0.0;
             let draftPackLotLines, weight, description, packLotLinesToEdit;
-            debugger;
             if (this.env.pos.config.product_configurator && _.some(product.attribute_line_ids, (id) => id in this.env.pos.attributes_by_ptal_id)) {
                 let attributes = _.map(product.attribute_line_ids, (id) => this.env.pos.attributes_by_ptal_id[id])
                                   .filter((attr) => attr !== undefined);
@@ -49,18 +48,19 @@ patch(ProductScreen.prototype, 'pos_customizations_product_screen', {
                 });
                 if (confirmed) {
                     // Segregate the old and new packlot lines
-                    debugger;
+
                     // Check if the entered Serial/Lot Number is correct or not
+                    //--------------------------------------------------------
                     const serial_lot_correct = await this.rpc({
                             model: 'pos.order',
                             method: 'check_serial_lot',
                             args: [product.id, payload.newArray[0]['text']]
                         });
-                    debugger;
                     if (!serial_lot_correct){
                         alert('No Serial/Lot found!')
                         return;
                     }
+                    //--------------------------------------------------------
                     const modifiedPackLotLines = Object.fromEntries(
                         payload.newArray.filter(item => item.id).map(item => [item.id, item.text])
                     );
