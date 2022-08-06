@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="point_of_sale.PaymentScreenPaymentLines" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('paymentline')]" position="before">
+            <div style="margin-bottom: 10px">
+                <span>
+                    <label style="font-size: 16px; margin-right: 5px">REFERENCE</label>
+                    <input type="text" id="ref_number" class="form-control" name="reference"/>
+                </span>
+            </div>
+        </xpath>
+    </t>
+</templates>
